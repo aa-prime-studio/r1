@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RollFun - Modern Entertainment Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #6A11CB;
+            --secondary-color: #2575FC;
+            --accent-color: #FF416C;
+            --background-dark: #111827;
+            --text-light: #F9FAFB;
+            --text-muted: #9CA3AF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Glassmorphic Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+        }
+
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .logo img {
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-light);
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login {
+            background: transparent;
+            border: 2px solid var(--text-muted);
+            color: var(--text-muted);
+        }
+
+        .btn-signup {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            color: var(--text-light);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--text-light), #f0f0f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-cta {
+            background: var(--accent-color);
+            color: var(--text-light);
+        }
+
+        .hero-cta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.4);
+        }
+
+        /* Game Categories */
+        .game-categories {
+            padding: 100px 0;
+            background: rgba(31, 41, 55, 0.5);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .category-card {
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+
+        .category-card img {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .category-card h3 {
+            color: var(--text-light);
+            margin-bottom: 10px;
+        }
+
+        /* Featured Games */
+        .featured-games {
+            padding: 100px 0;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: rgba(55, 65, 81, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .game-card-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(31, 41, 55, 0.7);
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container navbar-content">
+            <div class="logo">
+                <img src="/api/placeholder/40/40" alt="RollFun Logo">
+                RollFun
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Home</a>
+                <a href="#">Casino</a>
+                <a href="#">Sports</a>
+                <a href="#">Live Games</a>
+                <a href="#">Promotions</a>
+            </div>
+            <div class="auth-buttons">
+                <a href="#" class="btn btn-login">Login</a>
+                <a href="#" class="btn btn-signup">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <h1 class="hero-title">Unleash Your Gaming Adventure</h1>
+            <p class="hero-subtitle">Experience the ultimate online entertainment platform with endless possibilities</p>
+            <a href="#" class="btn hero-cta">Start Playing Now</a>
+        </div>
+    </header>
+
+    <!-- Game Categories -->
+    <section class="game-categories container">
+        <div class="categories-grid">
+            <div class="category-card">
+                <img src="/api/placeholder/80/80" alt="Slots">
+                <h3>Slots</h3>
+                <p>Exciting Slot Games</p>
+            </div>
+            <div class="category-card">
+                <img src="/api/placeholder/80/80" alt="Live Casino">
+                <h3>Live Casino</h3>
+                <p>Real Dealer Experience</p>
+            </div>
+            <div class="category-card">
+                <img src="/api/placeholder/80/80" alt="Sports Betting">
+                <h3>Sports Betting</h3>
+                <p>Global Sports Action</p>
+            </div>
+            <div class="category-card">
+                <img src="/api/placeholder/80/80" alt="Esports">
+                <h3>Esports</h3>
+                <p>Competitive Gaming</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Games -->
+    <section class="featured-games container">
+        <div class="games-grid">
+            <div class="game-card">
+                <img src="/api/placeholder/250/300" alt="Game 1">
+                <div class="game-card-info">
+                    <h3>Crazy Roulette</h3>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="/api/placeholder/250/300" alt="Game 2">
+                <div class="game-card-info">
+                    <h3>Blackjack Showdown</h3>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="/api/placeholder/250/300" alt="Game 3">
+                <div class="game-card-info">
+                    <h3>Wealth Slots</h3>
+                </div>
+            </div>
+            <div class="game-card">
+                <img src="/api/placeholder/250/300" alt="Game 4">
+                <div class="game-card-info">
+                    <h3>Money Spinner</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Support</a>
+                <a href="#">Payments</a>
+                <a href="#">Responsible Gaming</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p>&copy; 2024 RollFun. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -12,7 +12,7 @@
             --accent-color: #FF416C;
             --background-dark: #111827;
             --text-light: #F9FAFB;
-            --text-muted: #9CA3AF;
+            --text-muted: #d3d3d3;
         }
 
         * {
@@ -34,10 +34,37 @@
             padding: 0 15px;
         }
 
+        /* Domain Sale Marquee */
+        .domain-sale-marquee {
+            background: linear-gradient(to right, #782fff, #0040ff);
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1100;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .domain-sale-marquee-content {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
         /* Glassmorphic Navigation */
         .navbar {
             position: fixed;
-            top: 0;
+            top: 40px;
             left: 0;
             width: 100%;
             z-index: 1000;
@@ -110,25 +137,28 @@
             height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             position: relative;
             overflow: hidden;
+            background: url('./assets/a-2.png') no-repeat center center/cover; 
         }
 
         .hero-content {
             position: relative;
             z-index: 10;
             text-align: center;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
         .hero-title {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            background: linear-gradient(to right, var(--text-light), #f0f0f0);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .hero-subtitle {
@@ -149,21 +179,38 @@
 
         /* Game Categories */
         .game-categories {
-            padding: 100px 0;
+            padding: 60px 0;
             background: rgba(31, 41, 55, 0.5);
+        }
+
+        .categories-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .categories-header h2 {
+            font-size: 2rem;
+            color: var(--text-light);
+        }
+
+        .categories-header a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
         }
 
         .categories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
             gap: 30px;
         }
 
         .category-card {
             background: rgba(55, 65, 81, 0.5);
             border-radius: 15px;
-            padding: 30px;
-            text-align: center;
+            overflow: hidden;
             transition: transform 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -172,9 +219,15 @@
             transform: scale(1.05);
         }
 
-        .category-card img {
-            width: 80px;
-            margin-bottom: 20px;
+.category-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+        .category-card-info {
+            padding: 20px;
+            text-align: center;
         }
 
         .category-card h3 {
@@ -242,11 +295,18 @@
     </style>
 </head>
 <body>
+    <!-- Domain Sale Marquee -->
+    <div class="domain-sale-marquee">
+        <div class="domain-sale-marquee-content">
+            🔥 DOMAIN FOR SALE: theroll.fun - Premium Entertainment Platform Domain Available - Contact Seller Now! 💰 Serious Inquiries Only 🌐 Rare Opportunity to Acquire Exceptional Digital Real Estate 🚀
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container navbar-content">
             <div class="logo">
-                <img src="/api/placeholder/40/40" alt="RollFun Logo">
+                <img src="./assets/a.png" alt="RollFun Logo">
                 RollFun
             </div>
             <div class="nav-links">
@@ -274,26 +334,24 @@
 
     <!-- Game Categories -->
     <section class="game-categories container">
+        <div class="categories-header">
+            <h2>Game Categories</h2>
+            <a href="#">SHOW ALL</a>
+        </div>
         <div class="categories-grid">
             <div class="category-card">
-                <img src="/api/placeholder/80/80" alt="Slots">
-                <h3>Slots</h3>
-                <p>Exciting Slot Games</p>
+                <img src= "./assets/a-3.png" alt="Sports Betting">
+                <div class="category-card-info">
+                    <h3>Sports Betting</h3>
+                    <p>Global Sports Action</p>
+                </div>
             </div>
             <div class="category-card">
-                <img src="/api/placeholder/80/80" alt="Live Casino">
-                <h3>Live Casino</h3>
-                <p>Real Dealer Experience</p>
-            </div>
-            <div class="category-card">
-                <img src="/api/placeholder/80/80" alt="Sports Betting">
-                <h3>Sports Betting</h3>
-                <p>Global Sports Action</p>
-            </div>
-            <div class="category-card">
-                <img src="/api/placeholder/80/80" alt="Esports">
-                <h3>Esports</h3>
-                <p>Competitive Gaming</p>
+                <img src= "./assets/a-5.png" alt="Sports Betting">
+                <div class="category-card-info">
+                    <h3>Esports</h3>
+                    <p>Competitive Gaming</p>
+                </div>
             </div>
         </div>
     </section>
@@ -302,25 +360,25 @@
     <section class="featured-games container">
         <div class="games-grid">
             <div class="game-card">
-                <img src="/api/placeholder/250/300" alt="Game 1">
+                <img src="./assets/a-7.png" alt="Crazy Roulette">
                 <div class="game-card-info">
                     <h3>Crazy Roulette</h3>
                 </div>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/250/300" alt="Game 2">
+                <img src="./assets/a-6.png" alt="Blackjack Showdown">
                 <div class="game-card-info">
                     <h3>Blackjack Showdown</h3>
                 </div>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/250/300" alt="Game 3">
+                <img src="./assets/a8.png" alt="Wealth Slots">
                 <div class="game-card-info">
                     <h3>Wealth Slots</h3>
                 </div>
             </div>
             <div class="game-card">
-                <img src="/api/placeholder/250/300" alt="Game 4">
+                <img src="./assets/a9.png" alt="Money Spinner">
                 <div class="game-card-info">
                     <h3>Money Spinner</h3>
                 </div>
@@ -338,7 +396,7 @@
                 <a href="#">Responsible Gaming</a>
                 <a href="#">Privacy Policy</a>
             </div>
-            <p>&copy; 2024 RollFun. All Rights Reserved.</p>
+            <p>© 2025 theroll.fun. All Rights Reserved.</p>
         </div>
     </footer>
 </body>
